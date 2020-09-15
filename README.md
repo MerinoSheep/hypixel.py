@@ -33,7 +33,7 @@ Yup! There are currently two different examples that you can view: one's pretty 
 You could also look at my Hypixel bot for Discord, which uses this library and provides players an awesome way to look at people's statistics! https://sprinkly.net/hypixelbot
 
 ## Can I contribute to this?
-Heckas! You would be super awesome if you did that! Get started by checking out the guidelines on contributing here, have a look at [the contributing guidelines](./docs/contributing.md)!
+Simply follow the guidline and create a pull request to have your contributions added to the repo.
 
 ## Got any issues?
-Check out the current [Issues](https://github.com/Snuggle/hypixel.py/issues/) for anyone else with your issue, or post a [new Issue](https://github.com/Snuggle/hypixel.py/issues/new/) for help!
+Check out the current [Issues](https://github.com/MerinoSheep/hypixel.py/issues/) for anyone else with your issue, or post a [new Issue](https://github.com/Snuggle/hypixel.py/issues/new/) for help!
