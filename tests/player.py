@@ -1,38 +1,4 @@
 """ Travis Ci Tests """
-
-ActualData = [
-              {'Name': 'ByeByeBaePls',
-              'Rank': {'wasStaff': False, 'rank': 'MVP+'},
-              'Level': 13.7633,
-              'GuildID': '54b9e7060cf2141da4fb3449',
-              'Session': None},
-
-              {'Name': 'kevinkool',
-               'Rank': {'wasStaff': True, 'rank': 'MVP+'},
-               'Level': 43.25043478260869,
-               'GuildID': None,
-               'Session': None},
-
-              {'Name': 'canihasban',
-               'Rank': {'wasStaff': False, 'rank': 'Non'},
-               'Level': 1.053,
-               'GuildID': None,
-               'Session': None},
-
-              {'Name': 'Kqwqii',
-               'Rank': {'wasStaff': False, 'rank': 'MVP+'},
-               'Level': 5.1,
-               'GuildID': None,
-               'Session': None},
-
-              {'Name': 'Ameston',
-               'Rank': {'wasStaff': False, 'rank': 'Moderator'},
-               'Level': 227,
-               'GuildID': None,
-               'Session': None}
-              ]
-
-
 import os
 import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
@@ -48,22 +14,10 @@ except KeyError:
     API_KEY = os.getenv("HY_API_KEY")
 hypixel.setKeys([API_KEY])
 
-TestFailed = False
+player = hypixel.Player('hypixel') #This info should not change
+playerinfo_json = player.getPlayerInfo()
 
-for player in ActualData:
-    TestPlayer = hypixel.Player(player['Name'])
-    for test in player:
-        method_to_call = getattr(TestPlayer, 'get' + test)
-        testdata = method_to_call()
-        if testdata == player[test]:
-            print(f"✔ {testdata}")
-        else:
-            print(f"❌ {testdata}, Expected: {player[test]} [FAILED]")
-            #TestFailed = True
-    print(f"UUID: {TestPlayer.UUID}\n")
-
-if TestFailed is True:
-    raise ValueError
-
-
+assert playerinfo_json['uuid'] == 'f7c77d999f154a66a87dc4a51ef30d19'
+assert player.getRank()['rank'] == 'Admin' #TODO make a function to get just rank
+assert playerinfo_json['firstLogin'] == 1377123024367
 print("\nDone! All tests finished.")
