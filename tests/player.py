@@ -4,14 +4,11 @@ import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 import hypixel
 from dotenv import load_dotenv
-import time
-
 load_dotenv()
+
 print(f"Test \"{os.path.basename(__file__)}\" is now running...\n")
-try:
-    API_KEY = os.environ['HY_API_KEY']
-except KeyError:
-    API_KEY = os.getenv("HY_API_KEY")
+
+API_KEY = os.getenv("HY_API_KEY")
 hypixel.set_keys([API_KEY])
 
 player = hypixel.Player('hypixel') #This info should not change

@@ -19,11 +19,11 @@ sys.path.insert(1, os.path.join(sys.path[0], '..'))
 import hypixel
 from time import time
 from random import shuffle
-
+from dotenv import load_dotenv
+load_dotenv()
 print(f"Test \"{os.path.basename(__file__)}\" is now running...\n")
 
-API_KEY = os.environ['HY_API_KEY']
-
+API_KEY = os.getenv("HY_API_KEY")
 hypixel.set_keys([API_KEY])
 
 start = time() # Start timer.

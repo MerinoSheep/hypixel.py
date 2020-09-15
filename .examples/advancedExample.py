@@ -11,10 +11,7 @@ sys.path.append(parentdir)
 import hypixel
 load_dotenv()
 API_KEYS = []
-if 'TRAVIS' in os.environ:
-    API_KEYS.append(os.getenv("HY_API_KEY"))
-else:
-    API_KEYS.append(os.getenv('HY_API_KEY'))
+API_KEY = os.getenv("HY_API_KEY")
 hypixel.set_keys(API_KEYS) # This sets the API keys that are going to be used.
 
 options = ['rank', 'level', 'karma', 'twitter','guild','guild members','quit']
