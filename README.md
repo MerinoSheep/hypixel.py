@@ -1,9 +1,4 @@
 <p align="center">
-   <a href="https://hypixel.net" style="text-decoration: none">
-      <img src="https://i.imgur.com/eFWzNiy.png">
-   </a>
-</p>
-<p align="center">
     <a href="https://api.hypixel.net">
         <img src="https://img.shields.io/badge/hypixel--api-python-brightgreen.svg?colorA=2d2306&colorB=705810"
              alt="Hypixel API - Python">
@@ -26,11 +21,11 @@ hypixel.py: A simple, community Python library which allows you to get values fr
 Designed for use with the latest version of Python with two previous versions also tested.<br><br>
 
 ## How to install
-Installing hypixel.py is easy-peasy! Get going with: `pip install hypixel`, followed by placing `import hypixel` at the top of your code.
+<code>python -m pip install git+https://github.com/MerinoSheep/hypixel.py.git<code> will install this github repo as a normal library. 
 
 
 ## What can you do?
-You can read the parent git to understand what most functions do [http://hypixel.readthedocs.io/](http://hypixel.readthedocs.io/en/latest/)
+You can read the parent github repo documentation to understand what most functions do [http://hypixel.readthedocs.io/](http://hypixel.readthedocs.io/en/latest/)
 
 ## Are there any examples?
 Yup! There are currently two different examples that you can view: one's pretty simple, and the others a bit more advanced. Check them out at: [Examples](./.examples/).
