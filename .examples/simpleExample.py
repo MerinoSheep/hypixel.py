@@ -13,7 +13,7 @@ import hypixel
 load_dotenv()
 API_KEYS = []
 if 'TRAVIS' in os.environ:
-    API_KEYS.append(os.environ.get("HY_API"))
+    API_KEYS.append(os.getenv("HY_API"))
 else:
     API_KEYS.append(os.getenv('API'))
 hypixel.setKeys(API_KEYS) # This sets the API keys that are going to be used.
