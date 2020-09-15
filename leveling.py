@@ -16,11 +16,11 @@ REVERSE_PQ_PREFIX = -(BASE - 0.5 * GROWTH)/GROWTH
 REVERSE_CONST = REVERSE_PQ_PREFIX * REVERSE_PQ_PREFIX
 GROWTH_DIVIDES_2 = 2/GROWTH
 
-def getLevel(exp):
+def get_level(exp):
     return floor(1+REVERSE_PQ_PREFIX + sqrt(REVERSE_CONST+GROWTH_DIVIDES_2*exp))
 
 def getExactLevel(exp):
-    return getLevel(exp) + getPercentageToNextLevel(exp)
+    return get_level(exp) + getPercentageToNextLevel(exp)
 
 def getExpFromLevelToNext(level):
     return GROWTH * (level-1) + BASE
@@ -37,7 +37,7 @@ def getTotalExpToFullLevel(level):
     return (HALF_GROWTH * (level-2) + BASE) * (level-1)
 
 def getPercentageToNextLevel(exp):
-    lv = getLevel(exp)
+    lv = get_level(exp)
     x0 = getTotalExpToLevel(lv)
     return (exp-x0) / (getTotalExpToLevel(lv+1) - x0)
 

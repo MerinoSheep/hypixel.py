@@ -15,7 +15,7 @@ if 'TRAVIS' in os.environ:
     API_KEYS.append(os.getenv("HY_API_KEY"))
 else:
     API_KEYS.append(os.getenv('HY_API_KEY'))
-hypixel.setKeys(API_KEYS) # This sets the API keys that are going to be used.
+hypixel.set_keys(API_KEYS) # This sets the API keys that are going to be used.
 
 options = ['rank', 'level', 'karma', 'twitter','guild','guild members','quit']
 
@@ -26,22 +26,22 @@ while True:
 
     try:
         if option_input == "rank": # If user selects rank,
-            print("The player is rank: " + player.getRank()['rank']) # Get the rank and print it.
-            print(f"Were they previously a staff member? {player.getRank()['wasStaff']}")
+            print("The player is rank: " + player.get_rank()['rank']) # Get the rank and print it.
+            print(f"Were they previously a staff member? {player.get_rank()['wasStaff']}")
 
         elif option_input == "level":
-            print("The player is level: " + str(player.getLevel())) # Print the player's low level!
+            print("The player is level: " + str(player.get_level())) # Print the player's low level!
 
         elif option_input == "karma":
             print(f"The player has {player.JSON['karma']} karma.")
 
         elif option_input == "guild":
-            print(f"Guild:{player.getGuildID()}")
+            print(f"Guild:{player.get_guild_ID()}")
 
         elif option_input == "guild members":
-            guild_id = player.getGuildID()
+            guild_id = player.get_guild_ID()
             guild = hypixel.Guild(guild_id)
-            guild_members = guild.getMembers()
+            guild_members = guild.get_members()
             print(guild_members)
 
         elif option_input == "twitter": # Okay this is a little more complicated

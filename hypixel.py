@@ -59,8 +59,7 @@ def getJSON(typeOfRequest, **kwargs):
     if cacheURL in requestCache and requestCache[cacheURL]['cacheTime'] > time():
         response = requestCache[cacheURL]['data'] # TODO: Extend cache time
     else:
-        requests = (grequests.get(u) for u in allURLS)
-        responses = grequests.imap(requests)
+        responses = grequests.imap(grequests.get(u) for u in allURLS)
         for r in responses:
             response = r.json()
 
@@ -73,13 +72,13 @@ def getJSON(typeOfRequest, **kwargs):
             requestCache[cacheURL] = {}
             requestCache[cacheURL]['data'] = response
             requestCache[cacheURL]['cacheTime'] = time() + cacheTime # Cache request and clean current cache.
-            cleanCache()
+            clean_cache()
     try:
         return response[typeOfRequest]
     except KeyError:
         return response
 
-def cleanCache():
+def clean_cache():
     """ This function is occasionally called to clean the cache of any expired objects. """
     itemsToRemove = []
     for item in requestCache:
@@ -92,7 +91,7 @@ def cleanCache():
         requestCache.pop(item)
 
 
-def setCacheTime(seconds):
+def set_cache_time(seconds):
     """ This function sets how long the request cache should last, in seconds.
 
         Parameters
@@ -107,7 +106,7 @@ def setCacheTime(seconds):
     except ValueError as chainedException:
         raise HypixelAPIError(f"Invalid cache time \"{seconds}\"") from chainedException
 
-def setKeys(api_keys):
+def set_keys(api_keys):
     """ This function is used to set your Hypixel API keys.
         It also checks that they are valid/working.
 
@@ -129,9 +128,9 @@ def setKeys(api_keys):
             if response['success'] is True:
                 verified_api_keys.append(api_key)
             else:
-                raise HypixelAPIError(f"hypixel/setKeys: Error with key XXXXXXXX-XXXX-XXXX-XXXX{api_key[23:]} | {response}")
+                raise HypixelAPIError(f"hypixel/set_keys: Error with key XXXXXXXX-XXXX-XXXX-XXXX{api_key[23:]} | {response}")
         else:
-            raise HypixelAPIError(f"hypixel/setKeys: The key '{api_key}' is not 36 characters.")
+            raise HypixelAPIError(f"hypixel/set_keys: The key '{api_key}' is not 36 characters.")
 
 class Player:
     """ This class represents a player on Hypixel as a single object.
@@ -170,14 +169,14 @@ class Player:
             raise PlayerNotFoundException(UUID)
 
 
-    def getPlayerInfo(self):
+    def get_player_info(self):
         """ This is a simple function to return a bunch of common data about a player. """
         JSON = self.JSON
         playerInfo = {}
         playerInfo['uuid'] = self.UUID
-        playerInfo['displayName'] = Player.getName(self)
-        playerInfo['rank'] = Player.getRank(self)
-        playerInfo['networkLevel'] = Player.getLevel(self)
+        playerInfo['displayName'] = Player.get_name(self)
+        playerInfo['rank'] = Player.get_rank(self)
+        playerInfo['networkLevel'] = Player.get_level(self)
         JSONKeys = ['karma', 'firstLogin', 'lastLogin',
                     'mcVersionRp', 'networkExp', 'socialMedia', 'prefix']
         for item in JSONKeys:
@@ -187,12 +186,12 @@ class Player:
                 pass
         return playerInfo
 
-    def getName(self):
+    def get_name(self):
         """ Just return player's name. """
         JSON = self.JSON
         return JSON['displayname']
 
-    def getLevel(self):
+    def get_level(self):
         """ This function calls leveling.py to calculate a player's network level. """
         JSON = self.JSON
         try:
@@ -207,7 +206,7 @@ class Player:
         myoutput = leveling.getExactLevel(exp)
         return myoutput
 
-    def getRank(self):
+    def get_rank(self):
         """ This function returns a player's rank, from their data. """
         JSON = self.JSON
         playerRank = {} # Creating dictionary.
@@ -231,13 +230,13 @@ class Player:
 
         return playerRank
 
-    def getGuildID(self):
+    def get_guild_ID(self):
         """ This function is used to get a GuildID from a player. """
         UUID = self.UUID
         GuildID = getJSON('findGuild', byUuid=UUID)
         return GuildID['guild']
 
-    def getSession(self):
+    def get_session(self):
         """ This function is used to get a player's session information. """
         UUID = self.UUID
         try:
@@ -254,7 +253,7 @@ class Guild:
         Parameters
         -----------
         GuildID : string
-            The ID for a Guild. This can be found by using :class:`Player.getGuildID()`.
+            The ID for a Guild. This can be found by using :class:`Player.get_guild_ID()`.
 
 
         Attributes
@@ -275,7 +274,7 @@ class Guild:
         except Exception as chainedException:
             raise GuildIDNotValid(GuildID) from chainedException
 
-    def getMembers(self):
+    def get_members(self):
         """ This function enumerates all the members in a guild.
         Mojang's API rate-limits this weirdly.
         This is an extremely messy helper function. Use at your own risk. """

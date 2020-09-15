@@ -24,7 +24,7 @@ print(f"Test \"{os.path.basename(__file__)}\" is now running...\n")
 
 API_KEY = os.environ['HY_API_KEY']
 
-hypixel.setKeys([API_KEY])
+hypixel.set_keys([API_KEY])
 
 start = time() # Start timer.
 
@@ -32,7 +32,7 @@ for i in range(0, Repeats-1):
     shuffle(ActualData) # Randomize the order of the data
     for InputUUID in ActualData:
         Player = hypixel.Player(InputUUID)
-        print(Player.getPlayerInfo())
+        print(Player.get_player_info())
 
 end = time()
 

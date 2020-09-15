@@ -12,12 +12,12 @@ try:
     API_KEY = os.environ['HY_API_KEY']
 except KeyError:
     API_KEY = os.getenv("HY_API_KEY")
-hypixel.setKeys([API_KEY])
+hypixel.set_keys([API_KEY])
 
 player = hypixel.Player('hypixel') #This info should not change
-playerinfo_json = player.getPlayerInfo()
+playerinfo_json = player.get_player_info()
 
 assert playerinfo_json['uuid'] == 'f7c77d999f154a66a87dc4a51ef30d19'
-assert player.getRank()['rank'] == 'Admin' #TODO make a function to get just rank
+assert player.get_rank()['rank'] == 'Admin' #TODO make a function to get just rank
 assert playerinfo_json['firstLogin'] == 1377123024367
 print("\nDone! All tests finished.")

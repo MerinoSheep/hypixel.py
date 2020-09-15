@@ -23,13 +23,13 @@ Version Information
 There is one main way to get the version for this library.
 
 .. data:: __version__
-    
+
     Return the version number as a string. Example: ``'0.6.5'``
 
 Miscellaneous Functions
 ------------------------
 
-.. autofunction:: setKeys(api_keys)
+.. autofunction:: set_keys(api_keys)
 
 .. autofunction:: setCacheTime(seconds)
 

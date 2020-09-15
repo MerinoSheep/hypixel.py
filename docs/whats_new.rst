@@ -33,9 +33,9 @@ Create Travis Ci tests and simplified use of the library.
 **Old:**
 
 .. code-block:: python
-    
+
     variable = hypixel.Player('username').getJSON()
-    print(variable.getLevel())
+    print(variable.get_level())
     >>> 96.3424329924
     print(variable.getJSON.JSON['networkExp'])
     >>> 4723883
@@ -45,7 +45,7 @@ Create Travis Ci tests and simplified use of the library.
 .. code-block:: python
 
     variable = hypixel.Player('username')
-    print(variable.getLevel())
+    print(variable.get_level())
     >>> 96.3424329924
     print(variable.JSON['networkExp'])
     >>> 4723883
