@@ -282,16 +282,10 @@ class Guild:
         """ This function enumerates all the members in a guild.
         Mojang's API rate-limits this weirdly.
         This is an extremely messy helper function. Use at your own risk. """
-        guildRoles = ['MEMBER', 'OFFICER', 'GUILDMASTER'] # Define variables etc.
         memberDict = self.JSON['members']
-        allGuildMembers = {}
-        for role in guildRoles: # Make allGuildMembers =
-            allGuildMembers[role] = [] # {MEMBER: [], OFFICER: [], GUILDMASTER: []}
         allURLS = []
         URLStoRequest = []
         roleOrder = []
-        memberList = []
-        requests = None
         responses = None
         for member in memberDict: # For each member, use the API to get their username.
             roleOrder.append(member['rank'])
@@ -302,8 +296,7 @@ class Guild:
                 print("NOPE")
                 allURLS.append(UUIDResolverAPI + member['uuid'])
                 URLStoRequest.append(UUIDResolverAPI + member['uuid'])
-        requests = (grequests.get(u) for u in URLStoRequest)
-        responses = grequests.map(requests)
+        responses = grequests.map(grequests.get(u) for u in URLStoRequest)
         for response in responses:
             requestCache[UUIDResolverAPI + response.json()['id']] = response.json()
         i = 0
@@ -311,22 +304,11 @@ class Guild:
             try:
                 if user.startswith(UUIDResolverAPI):
                     allURLS[uindex] = responses[i].json()['name']
-                    i = i + 1
+                    i += 1
             except AttributeError:
                 pass
-        i = 0
-        for name in allURLS:
-            try:
-                member = {'role': roleOrder[i], 'name': name}
-            except KeyError:
-                member = {'role': roleOrder[i], 'name': 'Unknown'}
-            memberList.append(member)
-            i = i + 1
-        for member in memberList:
-            roleList = allGuildMembers[member['role']]
-            roleList.append(member['name'])
 
-        return allGuildMembers
+        return allURLS
 
 if __name__ == "__main__":
     print("This is a Python library and shouldn't be run directly.\n"

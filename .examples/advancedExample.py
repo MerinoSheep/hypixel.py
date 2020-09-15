@@ -17,28 +17,35 @@ else:
     API_KEYS.append(os.getenv('HY_API_KEY'))
 hypixel.setKeys(API_KEYS) # This sets the API keys that are going to be used.
 
-options = ['rank', 'level', 'karma', 'twitter']
+options = ['rank', 'level', 'karma', 'twitter','quit','guild','guild members']
 
 while True:
     mahInput = input("\nPlease give me a Minecraft username/UUID: ")
-    optionInput = input(f"Please select from list: {options}\n> ")
+    option_input = input(f"Please select from list: {options}\n> ").lower()
     player = hypixel.Player(mahInput) # Creates a hypixel.Player object using the input.
+
     try:
-        if optionInput.lower() == "rank": # If user selects rank,
+        if option_input == "rank": # If user selects rank,
             print("The player is rank: " + player.getRank()['rank']) # Get the rank and print it.
             print(f"Were they previously a staff member? {player.getRank()['wasStaff']}")
 
-        elif optionInput.lower() == "level":
+        elif option_input == "level":
             print("The player is level: " + str(player.getLevel())) # Print the player's low level!
 
-        elif optionInput.lower() == "karma":
+        elif option_input == "karma":
             print(f"The player has {player.JSON['karma']} karma.") # +25 karma ;)
-
-        elif optionInput.lower() == "twitter": # Okay this is a little more complicated
+        elif option_input == "guild":
+            print(f"Guild:{player.getGuildID()}")
+        elif option_input == "guild members":
+            guild_id = player.getGuildID()
+            guild = hypixel.Guild(guild_id)
+            guild_members = guild.getMembers()
+            print(guild_members)
+        elif option_input == "twitter": # Okay this is a little more complicated
             try:
                 socialMedias = player.JSON['socialMedia']['links'] # Check their social media
                 print(socialMedias['TWITTER']) # And if they have a Twitter account, print it.
             except KeyError: # If an error comes up, saying they don't have a twitter account...
-                print("This user doesn't have a Twitter account linked.") # Say that.
+                print("This user doesn't have a Twitter account linked.")
     except hypixel.PlayerNotFoundException: # If the player doesn't live on earth, catch this exception.
         print("Cannot find player. :/")

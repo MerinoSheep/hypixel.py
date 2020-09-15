@@ -23,8 +23,15 @@ ActualData = [
                'Rank': {'wasStaff': False, 'rank': 'MVP+'},
                'Level': 5.1,
                'GuildID': None,
+               'Session': None},
+
+              {'Name': 'Ameston',
+               'Rank': {'wasStaff': False, 'rank': 'Moderator'},
+               'Level': 227,
+               'GuildID': None,
                'Session': None}
               ]
+
 
 import os
 import sys
@@ -52,7 +59,7 @@ for player in ActualData:
             print(f"✔ {testdata}")
         else:
             print(f"❌ {testdata}, Expected: {player[test]} [FAILED]")
-            TestFailed = True
+            #TestFailed = True
     print(f"UUID: {TestPlayer.UUID}\n")
 
 if TestFailed is True:
