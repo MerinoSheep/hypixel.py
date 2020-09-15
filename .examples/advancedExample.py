@@ -1,9 +1,20 @@
 """ This is an example of how you can use this API to create cool things.
     Just run this and you should see cool stuff. c:"""
 
-import hypixel
+import os, sys
+from dotenv import load_dotenv
 
-API_KEYS = ['API_KEY_HERE_PLS', 'ANOTHER_API_KEY?', 'Etc.']
+currentdir = os.path.dirname(os.path.realpath(__file__)) # allows to import hypixel file for debugging purposes
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+
+import hypixel
+load_dotenv()
+API_KEYS = []
+if 'TRAVIS' in os.environ:
+    API_KEYS.append(os.getenv("HY_API_KEY"))
+else:
+    API_KEYS.append(os.getenv('HY_API_KEY'))
 hypixel.setKeys(API_KEYS) # This sets the API keys that are going to be used.
 
 options = ['rank', 'level', 'karma', 'twitter']
