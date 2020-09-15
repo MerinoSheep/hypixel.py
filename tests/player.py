@@ -30,12 +30,15 @@ import os
 import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 import hypixel
+from dotenv import load_dotenv
 import time
 
+load_dotenv()
 print(f"Test \"{os.path.basename(__file__)}\" is now running...\n")
-
-API_KEY = os.environ['HY_API_KEY']
-
+try:
+    API_KEY = os.environ['HY_API_KEY']
+except KeyError:
+    API_KEY = os.getenv("HY_API_KEY")
 hypixel.setKeys([API_KEY])
 
 TestFailed = False
