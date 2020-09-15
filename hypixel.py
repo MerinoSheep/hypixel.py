@@ -156,9 +156,6 @@ class Player:
             The player's UUID.
     """
 
-    JSON = None
-    UUID = None
-
     def __init__(self, UUID):
         """ This is called whenever someone uses hypixel.Player('Snuggle').
             Get player's UUID, if it's a username. Get Hypixel-API data. """
@@ -252,6 +249,7 @@ class Player:
 class Guild:
     """ This class represents a guild on Hypixel as a single object.
         A guild has a name, members etc.
+        look at https://github.com/HypixelDev/PublicAPI/blob/master/Documentation/methods/guild.md to see json response
 
         Parameters
         -----------
@@ -268,8 +266,7 @@ class Guild:
             The Guild's GuildID.
 
     """
-    JSON = None
-    GuildID = None
+
     def __init__(self, GuildID):
         try:
             if len(GuildID) == 24:
@@ -311,5 +308,5 @@ class Guild:
         return allURLS
 
 if __name__ == "__main__":
-    print("This is a Python library and shouldn't be run directly.\n"
+    print("This is a Python library and shouldn't be run directly.\n" +
           "Please look at https://github.com/Snuggle/hypixel.py for usage & installation information.")
