@@ -22,7 +22,7 @@ from random import shuffle
 
 print(f"Test \"{os.path.basename(__file__)}\" is now running...\n")
 
-API_KEY = os.environ['apikey']
+API_KEY = os.environ['HY_API_KEY']
 
 hypixel.setKeys([API_KEY])
 
