@@ -17,7 +17,7 @@ else:
     API_KEYS.append(os.getenv('HY_API_KEY'))
 hypixel.setKeys(API_KEYS) # This sets the API keys that are going to be used.
 
-options = ['rank', 'level', 'karma', 'twitter','quit','guild','guild members']
+options = ['rank', 'level', 'karma', 'twitter','guild','guild members','quit']
 
 while True:
     mahInput = input("\nPlease give me a Minecraft username/UUID: ")
@@ -33,19 +33,24 @@ while True:
             print("The player is level: " + str(player.getLevel())) # Print the player's low level!
 
         elif option_input == "karma":
-            print(f"The player has {player.JSON['karma']} karma.") # +25 karma ;)
+            print(f"The player has {player.JSON['karma']} karma.")
+
         elif option_input == "guild":
             print(f"Guild:{player.getGuildID()}")
+
         elif option_input == "guild members":
             guild_id = player.getGuildID()
             guild = hypixel.Guild(guild_id)
             guild_members = guild.getMembers()
             print(guild_members)
+
         elif option_input == "twitter": # Okay this is a little more complicated
             try:
                 socialMedias = player.JSON['socialMedia']['links'] # Check their social media
                 print(socialMedias['TWITTER']) # And if they have a Twitter account, print it.
             except KeyError: # If an error comes up, saying they don't have a twitter account...
                 print("This user doesn't have a Twitter account linked.")
+        elif option_input == "quit":
+            break
     except hypixel.PlayerNotFoundException: # If the player doesn't live on earth, catch this exception.
         print("Cannot find player. :/")
