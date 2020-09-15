@@ -28,11 +28,9 @@ Designed for use with the latest version of Python with two previous versions al
 ## How to install
 Installing hypixel.py is easy-peasy! Get going with: `pip install hypixel`, followed by placing `import hypixel` at the top of your code.
 
-## Recent Changes
-For the latest news and updates to this library, check out our [changelog](http://hypixel.readthedocs.io/en/latest/whats_new.html).
 
 ## What can you do?
-If you learn-by-reading, take a look at [http://hypixel.readthedocs.io/](http://hypixel.readthedocs.io/en/latest/) to see what this library is capable of. Get creating straight away!
+You can read the parent git to understand what most functions do [http://hypixel.readthedocs.io/](http://hypixel.readthedocs.io/en/latest/)
 
 ## Are there any examples?
 Yup! There are currently two different examples that you can view: one's pretty simple, and the others a bit more advanced. Check them out at: [Examples](./.examples/).
