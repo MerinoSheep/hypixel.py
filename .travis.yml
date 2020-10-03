@@ -7,4 +7,4 @@ install:
   - pip install -r requirements.txt
 script:
  - python ./tests/speed.py
- - python ./tests/player.py
+ - python ./tests/test.py

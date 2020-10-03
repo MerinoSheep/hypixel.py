@@ -7,7 +7,6 @@ __version__ = '0.7.9'
 from random import choice
 from time import time
 import grequests
-
 import leveling
 
 HYPIXEL_API_URL = 'https://api.hypixel.net/'
@@ -51,7 +50,7 @@ def getJSON(typeOfRequest, **kwargs):
             if typeOfRequest == "player" and name == "uuid":
                 name = UUIDType
             requestEnd += f'&{name}={value}'
-
+    #runs regardless of typeOfRequest
     cacheURL = HYPIXEL_API_URL + f"{typeOfRequest}?key={'None'}{requestEnd}" # TODO: Lowercase
     allURLS = [HYPIXEL_API_URL + f'{typeOfRequest}?key={api_key}{requestEnd}'] # Create request URL.
 
@@ -306,6 +305,12 @@ class Guild:
 
         return allURLS
 
+class Network:
+    def key_info(self):
+        key = choice(verified_api_keys)
+        urls = [HYPIXEL_API_URL  + f"key?key={key}"]
+        response = grequests.map(grequests.get(u) for u in urls)
+        return response[0].json()
 if __name__ == "__main__":
     print("This is a Python library and shouldn't be run directly.\n" +
           "Please look at https://github.com/Snuggle/hypixel.py for usage & installation information.")

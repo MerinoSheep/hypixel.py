@@ -17,4 +17,7 @@ playerinfo_json = player.get_player_info()
 assert playerinfo_json['uuid'] == 'f7c77d999f154a66a87dc4a51ef30d19'
 assert player.get_rank()['rank'] == 'Admin' #TODO make a function to get just rank
 assert playerinfo_json['firstLogin'] == 1377123024367
+
+network_info = hypixel.Network()
+response = network_info.key_info()
 print("\nDone! All tests finished.")
